@@ -15,7 +15,6 @@
             if (!liff.isLoggedIn()) {
                 liff.login();
             } else {
-                // ログインしている場合、ユーザーのプロファイル情報を取得
                 liff.getProfile()
                     .then(profile => {
                         const userId = profile.userId;
