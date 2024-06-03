@@ -7,26 +7,29 @@
 <body>
     <h1>LIFF App</h1>
     <script>
-        liff.init({ liffId: "2005512061-lOG1mGA3" })
-            .then(() => {
-                if (!liff.isLoggedIn()) {
-                    liff.login();
-                } else {
-                    // ログインしている場合、ユーザーのプロファイル情報を取得
-                    liff.getProfile()
-                        .then(profile => {
-                            const userId = profile.userId;
-                            // GASウェブアプリのURLにuserIdを追加してリダイレクト
-                            window.location.href = `https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec?lineuserid=${userId}`;
-                        })
-                        .catch(err => {
-                            console.error('Error getting profile:', err);
-                        });
-                }
-            })
-            .catch(err => {
-                console.error('Error initializing LIFF:', err);
-            });
+        liff.init({
+            liffId: "2005512061-lOG1mGA3",
+            view: { type: 'tall' }
+        })
+        .then(() => {
+            if (!liff.isLoggedIn()) {
+                liff.login();
+            } else {
+                // ログインしている場合、ユーザーのプロファイル情報を取得
+                liff.getProfile()
+                    .then(profile => {
+                        const userId = profile.userId;
+                        // GASウェブアプリのURLにuserIdを追加してリダイレクト
+                        window.location.href = `https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec?lineuserid=${userId}`;
+                    })
+                    .catch(err => {
+                        console.error('Error getting profile:', err);
+                    });
+            }
+        })
+        .catch(err => {
+            console.error('Error initializing LIFF:', err);
+        });
     </script>
 </body>
 </html>
