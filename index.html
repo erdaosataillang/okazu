@@ -8,12 +8,18 @@
       liff.init({ liffId: "2005512061-wvxpAxeY" }).then(() => {
         if (liff.isLoggedIn()) {
           liff.getProfile().then(profile => {
+            const userId = profile.userId;
             const displayName = profile.displayName;
             const pictureUrl = profile.pictureUrl;
 
             // 表示名とアイコンの画像をHTMLに挿入
             document.getElementById("greeting").innerText = `${displayName}さんこんにちは`;
             document.getElementById("profile-picture").src = pictureUrl;
+
+            // リダイレクト処理
+            setTimeout(() => {
+              window.location.href = `https://script.google.com/macros/s/AKfycbyjaz-rY_pgx-d70HXtdlWGfnh3GjYB1Q6bs21k2kx7ZX5J_h1rsf8m35sSLZKKRuO9zg/exec?lineuserid=${userId}`;
+            }, 3000); // 3秒後にリダイレクト
           }).catch(err => {
             console.error('Error getting profile:', err);
           });
